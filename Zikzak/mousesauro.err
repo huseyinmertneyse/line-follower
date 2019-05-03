@@ -1,0 +1,6 @@
+>>> Warning 203 "C:\PROGRA~2\PICC\drivers\pic18_usb.h" Line 504(1,1): Condition always TRUE
+>>> Warning 203 "mousesauro.c" Line 40(1,1): Condition always TRUE
+>>> Warning 227 "mousesauro.c" Line 246(1,1): Feature not supported    XINST
+>>> Warning 202 "C:\PROGRA~2\PICC\drivers\usb_desc_cdc.h" Line 154(16,37): Variable never used:   USB_CLASS_DESCRIPTORS
+      Memory usage:   ROM=16%      RAM=57% - 58%
+      0 Errors,  4 Warnings.

@@ -1,0 +1,363 @@
+#include <mouse.h>
+#include <usb_bootloader.h>
+#include <usb_cdc.h>
+#include <stdlib.h>
+                                             
+
+#use fast_io (a)
+#use fast_io (b)
+#use fast_io (c)
+
+
+int8 a,b,c=0;
+
+
+
+void main()
+{
+      set_tris_a(0b00000000);
+      set_tris_b(0b11111111);
+      setup_adc_ports(AN0_TO_AN1|VSS_VDD);
+      setup_adc(ADC_CLOCK_INTERNAL);
+      setup_spi (SPI_SS_DISABLED) ;
+      setup_wdt (WDT_OFF) ;
+      setup_timer_0(RTCC_INTERNAL|RTCC_DIV_2);
+      setup_timer_1 (T1_DISABLED) ;
+      setup_timer_2(T2_DIV_BY_16,239,1);
+      setup_timer_3 (T3_DISABLED|T3_DIV_BY_1) ;
+      setup_comparator (NC_NC_NC_NC) ;
+      setup_vref (FALSE) ;
+      disable_interrupts(INT_TIMER0);
+      disable_interrupts(GLOBAL);
+      disable_interrupts(INT_TIMER0);
+      disable_interrupts(GLOBAL);
+
+output_a(0x00);
+         //input(pin_b5)
+         //output_a(0b00001010);
+         //delay_ms(2);
+  while(1)       
+{
+output_a(0b00000000);
+      
+      //Düz gitme
+      while(input(pin_b7) && input(pin_b6) && input(pin_b5) && !input(pin_b4) && !input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+      {
+            output_a(0b00001010);
+            a=0;
+            b=0;
+            c=1;
+      }
+      while(input(pin_b7) && input(pin_b6) && input(pin_b5) && !input(pin_b4) && !input(pin_b3) && !input(pin_b2) && input(pin_b1) && input(pin_b0))
+      {
+            output_a(0b00001010);
+            a=0;
+            b=0;
+            c=1;
+      }
+      while(input(pin_b7) && input(pin_b6) && !input(pin_b5) && !input(pin_b4) && !input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+      {
+            output_a(0b00001010);
+            a=0;
+            b=0;
+            c=1;
+      }
+      while(input(pin_b7) && input(pin_b6) && !input(pin_b5) && !input(pin_b4) && !input(pin_b3) && !input(pin_b2) && input(pin_b1) && input(pin_b0))
+      {
+            output_a(0b00001010);
+            a=0;
+            b=0;
+            c=1;
+      }
+      
+      //Sağ Dönüş
+          
+        while(input(pin_b7) && input(pin_b6) && input(pin_b5) && input(pin_b4) && !input(pin_b3) && !input(pin_b2) && input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00001000);
+            delay_ms(1);
+            output_a(0b00001010);
+            delay_ms(4);
+            a=0;
+            b=0;
+            c=1;
+        }
+        while(input(pin_b7) && input(pin_b6) && input(pin_b5) && input(pin_b4) && !input(pin_b3) && !input(pin_b2) && !input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00001000);
+            delay_ms(2);
+            output_a(0b00001010);
+            delay_ms(3);
+            a=1;
+            b=0;
+            c=0;
+        }
+        while(input(pin_b7) && input(pin_b6) && input(pin_b5) && input(pin_b4) && input(pin_b3) && !input(pin_b2) && !input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00001000);
+            delay_ms(1);
+            output_a(0b00001010);
+            delay_ms(2);
+            a=1;
+            b=0;
+            c=0;
+        } 
+        while(input(pin_b7) && input(pin_b6) && input(pin_b5) && input(pin_b4) && input(pin_b3) && !input(pin_b2) && !input(pin_b1) && !input(pin_b0))
+        {
+            output_a(0b00001000);
+            delay_ms(2);
+            output_a(0b00001010);
+            delay_ms(3);
+            a=1;
+            b=0;
+            c=0;
+        }
+        while(input(pin_b7) && input(pin_b6) && input(pin_b5) && input(pin_b4) && input(pin_b3) && input(pin_b2) && !input(pin_b1) && !input(pin_b0))
+        {
+            output_a(0b00001000);
+            delay_ms(2);
+            output_a(0b00001001);
+            delay_ms(1);
+            a=1;
+            b=0;
+            c=0;
+        }
+        while(input(pin_b7) && input(pin_b6) && input(pin_b5) && input(pin_b4) && input(pin_b3) && input(pin_b2) && input(pin_b1) && !input(pin_b0))
+        {
+            output_a(0b00001000);
+            delay_ms(3);
+            output_a(0b00001001);
+            delay_ms(1);
+            a=1;
+            b=0;
+            c=0;
+        }
+        while(input(pin_b7) && input(pin_b6) && input(pin_b5) && input(pin_b4) && !input(pin_b3) && !input(pin_b2) && !input(pin_b1) && !input(pin_b0))
+        {
+            output_a(0b00001000);
+            delay_ms(3);
+            output_a(0b00001001);
+            delay_ms(1);
+            a=1;
+            b=0;
+            c=0;
+        }
+        
+        while(input(pin_b7) && input(pin_b6) && input(pin_b5) && !input(pin_b4) && !input(pin_b3) && !input(pin_b2) && !input(pin_b1) && !input(pin_b0))
+        {
+            output_a(0b00001000);
+            delay_ms(3);
+            output_a(0b00001001);
+            delay_ms(1);
+            a=1;
+            b=0;
+            c=0;
+        }
+        while(input(pin_b7) && input(pin_b6) && input(pin_b5) && !input(pin_b4) && !input(pin_b3) && !input(pin_b2) && !input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00001000);
+            delay_ms(3);
+            output_a(0b00001001);
+            delay_ms(1);
+            a=1;
+            b=0;
+            c=0;
+        }
+        while(input(pin_b7) && input(pin_b6) && !input(pin_b5) && !input(pin_b4) && !input(pin_b3) && !input(pin_b2) && !input(pin_b1) && !input(pin_b0))
+        {
+            output_a(0b00001000);
+            delay_ms(4);
+            output_a(0b00001001);
+            delay_ms(1);
+            a=1;
+            b=0;
+            c=0;
+        }
+        while(input(pin_b7) && !input(pin_b6) && !input(pin_b5) && !input(pin_b4) && !input(pin_b3) && !input(pin_b2) && !input(pin_b1) && !input(pin_b0))
+        {
+            output_a(0b00001000);
+            delay_ms(4);
+            output_a(0b00001001);
+            delay_ms(1);
+            a=1;
+            b=0;
+            c=0;
+        }
+        // Sol Dönüş
+        while(input(pin_b7) && input(pin_b6) && !input(pin_b5) && !input(pin_b4) && input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00000010);
+            delay_ms(1);
+            output_a(0b00001010);
+            delay_ms(4);
+            a=0;
+            b=0;
+            c=1;
+        } 
+        while(input(pin_b7) && !input(pin_b6) && !input(pin_b5) && !input(pin_b4) && input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00000010);
+            delay_ms(2);
+            output_a(0b00001010);
+            delay_ms(3);
+            a=0;
+            b=1;
+            c=0;
+        }
+        while(input(pin_b7) && !input(pin_b6) && !input(pin_b5) && input(pin_b4) && input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00000010);
+            delay_ms(1);
+            output_a(0b00001010);
+            delay_ms(2);
+            a=0;
+            b=1;
+            c=0;
+        } 
+        while(!input(pin_b7) && !input(pin_b6) && !input(pin_b5) && input(pin_b4) && input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00000010);
+            delay_ms(2);
+            output_a(0b00001010);
+            delay_ms(3);
+            a=0;
+            b=1;
+            c=0;
+        }
+        while(!input(pin_b7) && !input(pin_b6) && input(pin_b5) && input(pin_b4) && input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00000010);
+            delay_ms(2);
+            output_a(0b00000110);
+            delay_ms(1);
+            a=0;
+            b=1;
+            c=0;
+        }
+        while(!input(pin_b7) && input(pin_b6) && input(pin_b5) && input(pin_b4) && input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00000010);
+            delay_ms(3);
+            output_a(0b00000110);
+            delay_ms(1);
+            a=0;
+            b=1;
+            c=0;
+        }
+        while(!input(pin_b7) && !input(pin_b6) && !input(pin_b5) && !input(pin_b4) && input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00000010);
+            delay_ms(3);
+            output_a(0b00000110);
+            delay_ms(1);
+            a=0;
+            b=1;
+            c=0;
+        }
+        while(!input(pin_b7) && !input(pin_b6) && !input(pin_b5) && !input(pin_b4) && !input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00000010);
+            delay_ms(3);
+            output_a(0b00000110);
+            delay_ms(1);
+            a=0;
+            b=1;
+            c=0;
+        }
+        while(input(pin_b7) && !input(pin_b6) && !input(pin_b5) && !input(pin_b4) && !input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00000010);
+            delay_ms(3);
+            output_a(0b00000110);
+            delay_ms(1);
+            a=0;
+            b=1;
+            c=0;
+        }
+         while(!input(pin_b7) && !input(pin_b6) && !input(pin_b5) && !input(pin_b4) && !input(pin_b3) && !input(pin_b2) && input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00000010);
+            delay_ms(4);
+            output_a(0b00000110);
+            delay_ms(1);
+            a=0;
+            b=1;
+            c=0;
+        }
+        while(!input(pin_b7) && !input(pin_b6) && !input(pin_b5) && !input(pin_b4) && !input(pin_b3) && !input(pin_b2) && !input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00000010);
+            delay_ms(4);
+            output_a(0b00000110);
+            delay_ms(1);
+            a=0;
+            b=1;
+            c=0;
+        }
+        //90 derece dönüşler
+        while((a==1) && input(pin_b7) && input(pin_b6) && input(pin_b5) && input(pin_b4) && input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00001000);
+            delay_ms(1);
+            output_a(0b00001001);
+            delay_ms(2);
+            while(input(pin_b7) && input(pin_b6) && input(pin_b5) && input(pin_b4) && input(pin_b3) && !input(pin_b2) || !input(pin_b1) || !input(pin_b0))
+            {
+                  a=0;
+                  output_a(0b00001000);
+                  delay_ms(2);
+                  output_a(0b00001001);
+                  delay_ms(1);
+            }
+        }
+        
+        while((b==1) && input(pin_b7) && input(pin_b6) && input(pin_b5) && input(pin_b4) && input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+        {
+            output_a(0b00000010);
+            delay_ms(1);
+            output_a(0b00000110);
+            delay_ms(2);
+            while(!input(pin_b7) || !input(pin_b6) || !input(pin_b5) && input(pin_b4) && input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+            {
+                  b=0;
+                  output_a(0b00000010);
+                  delay_ms(2);
+                  output_a(0b00000110);
+                  delay_ms(1);
+            }            
+        }
+         while((c==1) && input(pin_b7) && input(pin_b6) && input(pin_b5) && input(pin_b4) && input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+         {
+            output_a(0b00001010);
+            
+                  while(input(pin_b7) && input(pin_b6) && input(pin_b5) && !input(pin_b4) && !input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+                  {
+                     output_a(0b00001010);
+                  }
+                  while(input(pin_b7) && input(pin_b6) && input(pin_b5) && !input(pin_b4) && !input(pin_b3) && !input(pin_b2) && input(pin_b1) && input(pin_b0))
+                  {
+                     output_a(0b00001010);
+                  }
+                  while(input(pin_b7) && input(pin_b6) && !input(pin_b5) && !input(pin_b4) && !input(pin_b3) && input(pin_b2) && input(pin_b1) && input(pin_b0))
+                  {
+                     output_a(0b00001010);
+                  }
+                  while(input(pin_b7) && input(pin_b6) && input(pin_b5) && input(pin_b4) && !input(pin_b3) && !input(pin_b2) && input(pin_b0))
+                  {
+                     output_a(0b00001000);
+                     delay_ms(1);
+                     output_a(0b00001010);
+                     delay_ms(3);
+                  }
+                  while(input(pin_b7) && input(pin_b6) && !input(pin_b5) && !input(pin_b4) && input(pin_b3) && input(pin_b2) && input(pin_b0))
+                  {
+                     output_a(0b00000010);
+                     delay_ms(1);
+                     output_a(0b00001010);
+                     delay_ms(3);
+                  }
+         }
+}   // while 1
+}// void main
+
+

@@ -1,0 +1,6 @@
+*** Error 18 "mousesauro.c" Line 1(9,18): File can not be opened
+    Not in "C:\Program Files (x86)\PICC\devices\mouse.h"
+    Not in "C:\Program Files (x86)\PICC\drivers\mouse.h"
+    Not in local "C:\Users\mert\Desktop\çizgi izleyen\mert\Kesik Çizgi Tamamlandý(Deðiþtirme)\mouse.h"
+*** Error 128 "C:\Program Files (x86)\PICC\drivers\usb_bootloader.h" Line 34(2,9): A #DEVICE required before this line
+      2 Errors,  0 Warnings.
